@@ -1,0 +1,38 @@
+﻿.slider [type="checkbox"] {
+    display: none;
+}
+
+.slider .toggle-label {
+    display: block;
+    width: 40px;
+    height: 20px;
+    position: relative;
+    background: #79009c;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+    margin: 3px;
+}
+
+    .slider .toggle-label::before {
+        content: '';
+        display: block;
+        width: 50%;
+        height: 100%;
+        background: #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #d1d1d1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: transform 0.2s ease-in-out;
+    }
+
+.slider [type="checkbox"]:checked ~ .toggle-label {
+    background: #045f03;
+}
+
+    .slider [type="checkbox"]:checked ~ .toggle-label::before {
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }

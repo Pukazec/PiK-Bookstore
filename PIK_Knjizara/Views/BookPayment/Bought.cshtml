@@ -1,0 +1,50 @@
+﻿@model PIK_Library.Model.GetBook
+
+    <h3>You bought:</h3>
+<div class="d-flex flex-wrap">
+    <div>
+        @Html.Partial("_Book", Model.Book)
+    </div>
+    <div class="m-4">
+        <dl class="dl-horizontal">
+            <dt>
+                Price:
+            </dt>
+
+            <dd>
+                @Model.Book.Price EUR
+            </dd>
+
+            <dt>
+                Payment:
+            </dt>
+
+            <dd>
+                @if (Model.InStorePayment)
+                {
+                    <span>In store</span>
+                }
+                else
+                {
+                    <span>Paypal</span>
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Delivery):
+            </dt>
+
+            <dd>
+                @if (Model.Delivery)
+                {
+                    <span>Yes</span>
+                }
+                else
+                {
+                    <span>No</span>
+                }
+            </dd>
+
+        </dl>
+    </div>
+</div>

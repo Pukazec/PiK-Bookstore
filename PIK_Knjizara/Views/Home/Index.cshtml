@@ -1,0 +1,11 @@
+﻿@model IEnumerable<PIK_Library.Model.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="border border-dark mt-3">
+    <h2 class="m-2">Most popular books</h2>
+    @Html.Partial("_GetBooks", (IList<Book>)ViewBag.MostPopular)
+</div>
+
+@Html.Partial("_GetBooks", Model)

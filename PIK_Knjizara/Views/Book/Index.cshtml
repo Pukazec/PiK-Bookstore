@@ -1,0 +1,37 @@
+﻿@model PIK_Knjizara.Models.ViewModels.BookVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<input id="btnPanel" type="button" value="Used" class="btn btn-outline-dark mt-3" />
+
+<panel id="new">
+    @Html.Partial("_NewBook", Model.NewBook)
+</panel>
+
+
+<panel id="used">
+    @Html.Partial("_UsedBook", Model.OldBook)
+</panel>
+
+
+@section scripts{
+    <script>
+        $("#used").hide();
+        $("#btnPanel").on('click', function () {
+            var btn = document.getElementById("btnPanel");
+            if (btn.value == "Used") {
+                btn.value = "New";
+                $("#new").hide();  
+                $("#used").show();  
+                
+            } else {
+                btn.value = "Used";
+                $("#used").hide();
+                $("#new").show();  
+            }
+            console.log(btn.value);
+        });
+    </script>
+}

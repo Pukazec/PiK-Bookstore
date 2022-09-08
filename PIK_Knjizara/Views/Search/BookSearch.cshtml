@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PIK_Library.Model.Book>
+
+@{
+    ViewBag.Title = "BookSearch";
+}
+
+<h2>Book search</h2>
+
+@Html.Label(expression: "book", labelText: "Book:")
+@Html.TextBox(name: "book", value: null)
+@Html.ActionLink("Author search", "AuthorSearch", "Search", htmlAttributes: new { @class = "btn btn-outline-dark" })
+
+<h2>Books</h2>
+
+@Html.Partial("_GetBooks", Model)
+
+@section scripts{
+    <script>
+
+        $("#book").autocomplete({
+                source: '@Url.Action(actionName: "GetAutocompleteBooks", controllerName:"Book")',
+                select: function (e, ui) {
+                    e.preventDefault();
+                    var book = {
+                        name: ui.item.label,
+                        id: ui.item.value
+                    };
+                    $(this).val(book.name);
+                    showBook(book.id);
+                },
+                focus: function (e, ui) {
+                    e.preventDefault();
+                    $(this).val(ui.item.label);
+                }
+            }
+        );
+
+        function showBook(id) {
+            window.location.href = '@Url.Action("Index", "Book")?id=' + id;
+        }
+
+    </script>
+}
